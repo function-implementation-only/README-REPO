@@ -1,4 +1,8 @@
 # [Joinus] 개발을 위한 인력 매칭 서비스
+![image](https://user-images.githubusercontent.com/26705587/174597543-4ecc39e1-0e8a-44e9-b4d9-b4b97e559787.png)
+
+## 시연영상
+<br>
 
 [![mocusa](https://user-images.githubusercontent.com/47559613/190395847-58c23322-89a6-4e1a-a3dc-0295212b9995.png)](https://youtu.be/T2y4gs5TT-Y)
 
