@@ -69,8 +69,6 @@
 |FRONT-END|FRONT-END|BACK-END|BACK-END|BACK-END|BACK-END|                                                     DESIGN                                                     |
 
 ## 🌈 대표사진
-![Group 126](https://user-images.githubusercontent.com/97332044/217054483-23b8cebb-cf51-47b9-928c-0df7439108a5.png)
-<br>
 
 
 
