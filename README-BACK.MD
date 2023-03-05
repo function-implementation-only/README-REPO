@@ -13,89 +13,21 @@
    다른 유저가 그린 그림을 보고 여러분이 느끼신 그대로 적어주세요.
 >4. **모든 라운드가 종료되면...?**  
    게임이 진행되면서 결과물들이 어떻게 표현되는지 함께 보면서 즐겨주세요 😆
-
-### 설계 고려사항
-<details>
-<summary>📌 데이터 기준</summary>
-<div markdown="1">
-<br/>
-
- 1. 상품 데이터 수 : 100만 개
- <br/>
- &nbsp; &nbsp; 여러 패션 플랫폼(ex. 무신사, 브랜디 등)의 의류 상품 수를 확인 후 최대 값으로 결정<br/>
- <br/>
-
-   * 서울스토어 : 약 17만개
-   * 브랜디 : 약 100만개
-   * 무신사 : 약 20만개
    
-   ![Untitled](https://user-images.githubusercontent.com/59110017/190332582-1d3764a9-918f-4975-b226-39f81c07dd21.png)<br/>
- <br/>
- 2. 주문 데이터 수 : 약 1670만 개
- ![MUCOSA (1)](https://user-images.githubusercontent.com/59110017/190332840-e827a733-034d-4c1d-917b-d3408549e94e.png)
+   <br>
+   
+## 🔧 서비스 아키텍처
+![아키텍처](https://user-images.githubusercontent.com/97332044/217025165-06c7a429-ad98-45f1-92db-5433a5317837.png)
+<br>
 
 
- 
- 
-</div>
-</details>
+## ✨ 기술스택
+#### BACK-END
+<img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white"/> <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=white"/> <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=for-the-badge&logo=Spring Security&logoColor=white"/> 
+<img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=Redis&logoColor=white"/> <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"/> <img src="https://img.shields.io/badge/WebRTC-333333?style=for-the-badge&logo=WebRTC&logoColor=white"/> <br> <img src="https://img.shields.io/badge/Amazon RDS-527FFF?style=for-the-badge&logo=Amazon RDS&logoColor=white"/> <img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white"/> 
+<img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=Amazon EC2&logoColor=white"/> <img src="https://img.shields.io/badge/sockjs-333333?style=for-the-badge&logo=sockjs&logoColor=white"/> <img src="https://img.shields.io/badge/stomp-333333?style=for-the-badge&logo=stomp&logoColor=white"/> <img src="https://img.shields.io/badge/GitHub Actions-2088FF?style=for-the-badge&logo=GitHub Actions&logoColor=white"/>
+<br>
 
-<details>
-<summary>📌 Latency, Throughput 목표</summary>
-<div markdown="1">
-<br/>
-
- 1. Latency 목표값 설정  
- 
-  ```
- 📢 KISSmetrics는 고객의 47%가 2초 이내의 시간에 로딩이 되는 웹 페이지를 원하고 있으며, 40%는 로딩에 3초 이상 걸리는 페이지를 바로 떠난다고 설명했습니다.
-  ```
-  
-   * 일반적인 경우 : 0.05~0.1초
-   * 복잡한 트랜잭션이 필요한 경우 : 2초이내
-  
- 2. Throughput 목표값 설정
- 
-  ```
- 📢 News1 자료(2021년 기준)에서 쇼핑 플랫폼별 MAU(Monthly Active User, 월간 순수 이용자) 추이는 평균 약 400만 명이다.
-  ```
-  
-   * MAU : 400만(단위 : 명)
-   * DAU : 13만(단위 : 명)
-   * 안전계수 : 3
-   * 1일 평균 접속 수에 대한 최대 피크 때 배율 : 2배<br/><br/>
-   ![Untitled (1)](https://user-images.githubusercontent.com/59110017/190335545-856adc4a-17e7-4aaf-8322-dcf580414d5a.png)
-   * 1명당 평균 접속 수 : 20회<br/>
-   &nbsp; ⇒ 130,000(명) * 20(회) / 86,400(초) * 3(안전계수) * 2(1일 평균 접속 수에 대한 최대 피크 때 배율) = 약 180 rps
-
-  	
-</div>
-</details>
-
-<details>
-<summary>📌 동시성 제어 기준</summary>
-<br/>
-
- ```
- 📢 MUSINSA는 직매입한 인기 제품들을 최대 60% 할인하는 ‘무신사 라이브' 행사에서 1초당 최대 동시 접속자 수가 6400명을 기록하였다고 하였으며 이는 약 30여 분 만에 품절이 되었다고 하였습니다.
- ```
- 
- 1. 1초당 최대 동시 접속자 수 : 6400명
- 	
-	* 인기 온라인 패션 스토어의 특가 할인 케이스를 참고
-	
- 2. 시간 당 처리량 : 가용성이 보장되는 범위의 최대치
- 
- 	* 앞선 Latency의 내용을 참고하여 고객은 가능한 빠른 응답을 원하고 있음
- 
- 
- 
-<div markdown="1">
-</div>
-</details> 
-
-## 아키텍처
-![Untitled (2)](https://user-images.githubusercontent.com/59110017/190337828-429460fa-fcd0-43d0-a0d9-88dd2d2ed83f.png)
 
 ## 핵심 기능
 
@@ -486,19 +418,7 @@
 ![Group 126](https://user-images.githubusercontent.com/97332044/217054483-23b8cebb-cf51-47b9-928c-0df7439108a5.png)
 <br>
 
-## ✨ 기술스택
-#### FRONT-END
-<img src="https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"/> <img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black"/> <img src="https://img.shields.io/badge/Redux Toolkit-764ABC?style=for-the-badge&logo=Redux&logoColor=white"/> <br> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black"/> <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white"/> <img src="https://img.shields.io/badge/WebRTC-333333?style=for-the-badge&logo=WebRTC&logoColor=white"/> <img src="https://img.shields.io/badge/GitHub Actions-2088FF?style=for-the-badge&logo=GitHub Actions&logoColor=white"/> <img src="https://img.shields.io/badge/sockjs-333333?style=for-the-badge&logo=sockjs&logoColor=white"/> <img src="https://img.shields.io/badge/stomp-333333?style=for-the-badge&logo=stomp&logoColor=white"/>
 
-#### BACK-END
-<img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white"/> <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=white"/> <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=for-the-badge&logo=Spring Security&logoColor=white"/> 
-<img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=Redis&logoColor=white"/> <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"/> <img src="https://img.shields.io/badge/WebRTC-333333?style=for-the-badge&logo=WebRTC&logoColor=white"/> <br> <img src="https://img.shields.io/badge/Amazon RDS-527FFF?style=for-the-badge&logo=Amazon RDS&logoColor=white"/> <img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white"/> 
-<img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=Amazon EC2&logoColor=white"/> <img src="https://img.shields.io/badge/sockjs-333333?style=for-the-badge&logo=sockjs&logoColor=white"/> <img src="https://img.shields.io/badge/stomp-333333?style=for-the-badge&logo=stomp&logoColor=white"/> <img src="https://img.shields.io/badge/GitHub Actions-2088FF?style=for-the-badge&logo=GitHub Actions&logoColor=white"/>
-<br>
-
-## 🔧 서비스 아키텍처
-![아키텍처](https://user-images.githubusercontent.com/97332044/217025165-06c7a429-ad98-45f1-92db-5433a5317837.png)
-<br>
 
 <br>
 
