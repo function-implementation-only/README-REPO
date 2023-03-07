@@ -419,7 +419,7 @@
 | ------ | -------- | ------------------------------------------------------------ | --------------------- | -------------------------------- |
 | 정영준 | FrontEnd | 공고 crud<br/>                                               | dudwns0921@gmail.com  | https://github.com/dudwns0921    |
 | 박경서 | FrontEnd | 검색(쿼리 최적화) <br/>사용자/판매자 마이페이지<br/>주문 취소<br/>부하 테스트 | parksoyun98@naver.com | https://github.com/dongil618     |
-| 이예담 | FrontEnd |                                                              |                       |                                  |
+| 이예담 | FrontEnd | 회원가입<br/>로그인(소셜로그인)<br/>마이페이지 개인정보 수정             |  dldpeka0909@gmail.com   |  https://github.com/leeyedam   |
 | 이상돈 | FrontEnd | 회원가입<br/>로그인<br/>재입고 알림<br/>상품 주문(동시성 제어)<br/>로깅 | bsc980504@outlook.com | https://github.com/Backseungchan |
 
 
