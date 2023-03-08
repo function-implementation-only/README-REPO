@@ -489,7 +489,7 @@
   - 해당 오류를 해결하기 위하여 [stack overflow 검색 결과](#https://stackoverflow.com/questions/72114775/vite-global-is-not-defined)를 적용하여 vite 설정에 global 객체를 빈 객체 리터럴로 설정 해두었던 것이 해당 라이브러리 오류는 피해갔지만 동시에 백엔드 서버를 찾지 못하는 원인이 되었던 것.
   - index.html 스크립트에 global = window 를 추가하여 해결.
 
-- 결과
+- 결과   
   서버와의 연결이 성공하는것을 확인 하고 난 후에 바로 기능개발에 착수하여 채팅 기능을 3일만에 완성 할 수 있었음.
 
 - 정리 
