@@ -441,3 +441,61 @@
 <br>
 <br>
 <br>			
+
+    <!-- 상돈 hateyou@kakao.com / https://github.com/powercording
+    	웹소켓 실시간 채팅 구현, 서버사이드 이벤트 수신하여 서버에서 사용자에게 알릴 이벤트가 있는경우 클라이언트 화면에 알람기능. -->
+
+<table border="1">
+<thead>
+<tr><th>라이브러리명</th><th>버전</th><th>사용 목적</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>sockjs-client</td>
+<td>1.5.1</td>
+<td>웹 소켓 통신. 서버와 연결 된 이후 연결을 끊지 않아 서버와 클라이언트 간 양방향 통신이 가능.</td>
+</tr>
+<tr>
+<td>stompjs</td>
+<td>2.3.5</td>
+<td>웹소켓 통신에 헤더를 추가하여 클라이언트로 부터 서버로 토큰을 전달하여 사용자를 인증 및 구별 할 수 있음.</td>
+</tr>
+<tr>
+<td>event-source-polyfill</td>
+<td>1.0.31</td>
+<td>기존 EventSource API 는 헤더를 작성 할 수 없기 때문에 이벤트 서버에 연결 하기 위한 헤더를 추가 할 수 있게 도와줌.</td>
+</tr>
+</tbody>
+</tabel>
+   
+## 트러블 슈팅
+
+<details>
+<summary>웹 소켓 연결 엔드포인트를 찾지 못하는 이슈</summary>
+<div>
+
+- 문제상황  
+  채팅 기능을 구현하기 위해 웹소켓 관련 라이브러리 설치 이후 서버와 연결을 시도 할때
+  웹소켓이 서버를 찾지 못하고 연결되지 않는 현상을 마주침. 해당 문제가 해결되지 않아
+  채팅기능 개발이 일주일동안 늦춰지고 있었음.
+
+- 해결 과정
+
+  - sockjs-client / stompjs 라이브러리를 재설치. 문제가 해결되지 않음.
+  - 연결 로직을 복사하여 그대로 새로운 리액트 프로젝트 생성하여 적용. 서버 연결 성공.
+    현재 개발중인 프로젝트는 vite + react 이었으므로 vite 설정의 문제라고 판단.
+  - 새로운 vite + react 프로젝트를 생성하여 같은 코드를 통해 연결을 시도 하던중 순수한 리액트 프로젝트에선 발생하지 않는 오류가 발생하는것을 발견함.
+  - 몇몇 라이브러리는 vite 에서 global 객체를 찾지 못하는 현상이 있음을 확인함. 이번 케이스의 경우 웹 소켓 으로 채팅을 구현하기 위하여 받은 라이브러리가 해당 오류를 일으킴.
+  - 해당 오류를 해결하기 위하여 [stack overflow 검색 결과](#https://stackoverflow.com/questions/72114775/vite-global-is-not-defined)를 적용하여 vite 설정에 global 객체를 빈 객체 리터럴로 설정 해두었던 것이 해당 라이브러리 오류는 피해갔지만 동시에 백엔드 서버를 찾지 못하는 원인이 되었던 것.
+  - index.html 스크립트에 global = window 를 추가하여 해결.
+
+- 결과
+  서버와의 연결이 성공하는것을 확인 하고 난 후에 바로 기능개발에 착수하여 채팅 기능을 3일만에 완성 할 수 있었음.
+
+- 정리 
+	- vite 는 webpack 처럼 global필드를 정의하지 않습니다. 일부 라이브러리는 오래 되어 global에 의존하는 코드를 가지고 있습니다. - 일반적인 경우 window.global ||= window; 등의 코드 추가를 고려해볼만 합니다 - 프로젝트에서 사용된 sockjs 의 경우 글로벌객체를 참조하는 코드를 가지고 있습니다 [ex) if (global.document) { transportList = require(‘./transport-list’)]
+	- 이로 인해 global을 정의하지않는 vite환경에서 global 객체를 찾을수 없다는 오류를 발생시켰고, 이를 해결하기 위해서 적용한 global = {} 코드가 global 을 빈 객체로 만들어 예상치 못한 동작을 일으킵니다. 
+	- websocket 은 브라우저에서 작동 하므로 해당 global 에 대한 참조를 브라우저 전역 객체인 윈도우로 바꾸어주어 해결합니다.
+</div>
+</details>
+<br/><br/>
