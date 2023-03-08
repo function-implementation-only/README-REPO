@@ -493,9 +493,12 @@
   서버와의 연결이 성공하는것을 확인 하고 난 후에 바로 기능개발에 착수하여 채팅 기능을 3일만에 완성 할 수 있었음.
 
 - 정리 
-	- vite 는 webpack 처럼 global필드를 정의하지 않습니다. 일부 라이브러리는 오래 되어 global에 의존하는 코드를 가지고 있습니다. - 일반적인 경우 window.global ||= window; 등의 코드 추가를 고려해볼만 합니다 - 프로젝트에서 사용된 sockjs 의 경우 글로벌객체를 참조하는 코드를 가지고 있습니다 [ex) if (global.document) { transportList = require(‘./transport-list’)]
-	- 이로 인해 global을 정의하지않는 vite환경에서 global 객체를 찾을수 없다는 오류를 발생시켰고, 이를 해결하기 위해서 적용한 global = {} 코드가 global 을 빈 객체로 만들어 예상치 못한 동작을 일으킵니다. 
-	- websocket 은 브라우저에서 작동 하므로 해당 global 에 대한 참조를 브라우저 전역 객체인 윈도우로 바꾸어주어 해결합니다.
+	- vite 는 webpack 처럼 global필드를 정의하지 않습니다. 일부 라이브러리는 오래 되어 global에 의존하는 코드를 가지고 있습니다. 
+      - 일반적인 경우 window.global ||= window; 등의 코드 추가를 고려해볼만 합니다 
+      - 프로젝트에서 사용된 sockjs 의 경우 글로벌객체를 참조하는 코드를 가지고 있습니다 [ex) if (global.document) { transportList = require(‘./transport-list’)]   
+	
+  - 이로 인해 global을 정의하지않는 vite환경에서 global 객체를 찾을수 없다는 오류를 발생시켰고, 이를 해결하기 위해서 적용한 global = {} 코드가 global 을 빈 객체로 만들어 예상치 못한 동작을 일으킵니다.    
+	- websocket 은 브라우저에서 작동 하므로 해당 global 에 대한 참조를 브라우저 전역 객체인 window 로 바꾸어주어 해결합니다.
 </div>
 </details>
 <br/><br/>
