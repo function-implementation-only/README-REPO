@@ -18,6 +18,7 @@
 <img src="https://img.shields.io/badge/Kafka Connect-231F20?style=for-the-badge&logo=apachekafka&logoColor=white"/>
 <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"/>
 <img src="https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white"/>
+<img src="https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=prometheus&logoColor=white"/>
 ## 🔧 서비스 아키텍처
 
 ![아키텍쳐](https://user-images.githubusercontent.com/113872554/223130493-5548c091-cd72-4d0d-84d9-b24247de7062.png)
