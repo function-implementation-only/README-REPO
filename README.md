@@ -1,8 +1,5 @@
 # [Joinus] 개발을 위한 인력 매칭 서비스
-
-### 1
 ![홍보물 (1)](https://user-images.githubusercontent.com/113455892/224562196-b6d584c9-f48d-44f0-8902-4c163f1c85bc.svg)
-
 ## 시연영상
 
 
