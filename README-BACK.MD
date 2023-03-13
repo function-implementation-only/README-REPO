@@ -407,12 +407,8 @@
 
 ## 설계
 &nbsp; 📖 &nbsp; [API 설계](https://www.notion.so/grazinggoat/API-f628e62f892b4f41a464c22bdfc76f6b)  
-&nbsp; 🗃️ &nbsp; [DB 설계](https://www.notion.so/grazinggoat/DB-8de3ac23def0400caa0dc6
+&nbsp; 🗃️ &nbsp; [DB 설계](https://www.notion.so/grazinggoat/DB-8de3ac23def0400caa0dc6)
 <br>
-## 🌈 대표사진
-![Group 126](https://user-images.githubusercontent.com/97332044/217054483-23b8cebb-cf51-47b9-928c-0df7439108a5.png)
-<br>
-
 
 
 <br>
